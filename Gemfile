@@ -8,8 +8,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
-
 gem 'turbolinks'
+gem 'devise'
+
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

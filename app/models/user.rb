@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
          :rememberable,
          :trackable,
          :validatable
+
+  has_many :polls
 end

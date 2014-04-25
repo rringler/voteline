@@ -1,0 +1,74 @@
+<%= form_for @poll, url: polls_path(params[:id]), method: :post do |f| %>
+  <% if @poll.errors.any? %>
+    <div class="row">
+      <div id="form_errors" class="col-sm-6">
+        <h3>
+          <%= pluralize(@poll.errors.count, "error") %> prohibited this
+              poll from being saved:
+        </h3>
+        <ul>
+          <% @poll.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= f.label :question %>
+        <%= f.text_field :question, class: "form-control",
+                                    placeholder: "Question",
+                                    autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= f.label :vote_min %>
+        <%= f.text_field :vote_min, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= f.label :vote_max %>
+        <%= f.text_field :vote_max, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= f.label :start %>
+        <%= f.datetime_local_field :start_date, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= f.label :end %>
+        <%= f.datetime_local_field :end_date, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+<% end %>

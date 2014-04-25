@@ -28,7 +28,13 @@ class VoteController < ApplicationController
   private
 
   def vote_params
-    params.require(:vote).permit(:question, :start, :finish, :vote_min, :vote_max)
+    params.require(:vote).permit(:question,
+                                 :vote_min,
+                                 :vote_max,
+                                 :start_date,
+                                 :start_time,
+                                 :finish_date,
+                                 :finish_time)
   end
 
   def current_user?

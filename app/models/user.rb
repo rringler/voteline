@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
          :validatable
 
   has_many :polls
+  has_many :votes
 end

@@ -1,0 +1,39 @@
+<%= form_for @vote, url: poll_votes_path(params[:poll_id]), method: :post do |f| %>
+  <% if @vote.errors.any? %>
+    <div class="row">
+      <div id="form_errors" class="col-sm-6">
+        <h3>
+          <%= pluralize(@vote.errors.count, "error") %> prohibited this
+              post from being saved:
+        </h3>
+        <ul>
+          <% @vote.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :poll_id, value: params[:poll_id] %>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= f.label :value %>
+        <%= f.range_field :value, nil, in: @vote.poll.range,
+                                       class: "form-control",
+                                       autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Vote</button>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -2,14 +2,15 @@ class CreatePolls < ActiveRecord::Migration
   def self.up
     create_table :polls do |t|
       ## Foreign keys
-      t.integer  :user_id,  null: false
+      t.integer  :user_id,  null:    false
 
       # Polls attributes
-      t.string   :question, null: false
+      t.string   :question, null:    false
       t.datetime :start
       t.datetime :end
-      t.integer  :vote_min, null: false
-      t.integer  :vote_max, null: false
+      t.integer  :vote_min, null:    false
+      t.integer  :vote_max, null:    false
+      t.boolean  :public,   default: false
 
       t.timestamps
     end

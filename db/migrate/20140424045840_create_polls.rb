@@ -7,7 +7,7 @@ class CreatePolls < ActiveRecord::Migration
       # Polls attributes
       t.string   :question, null:    false
       t.datetime :start
-      t.datetime :end
+      t.datetime :finish
       t.integer  :vote_min, null:    false
       t.integer  :vote_max, null:    false
       t.boolean  :public,   default: false

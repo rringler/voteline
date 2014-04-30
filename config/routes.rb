@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#index'
+  match '/users/:id', to: "users#show",
+                      via: [:get],
+                      as: 'users'
 end

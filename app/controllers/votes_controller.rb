@@ -1,4 +1,4 @@
-class VoteController < ApplicationController
+class VotesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
   befole_filter :current_user?, only: [:edit, :update, :destroy]
 

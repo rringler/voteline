@@ -1,4 +1,4 @@
-class PollController < ApplicationController
+class PollsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
   before_filter :current_user?, only: [:edit, :update, :destroy]
   before_filter :create_datetime_params, only: [:create, :update]

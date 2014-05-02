@@ -3,6 +3,7 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.0'
 gem 'pg'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'

@@ -1,0 +1,47 @@
+= form_for @poll, url: polls_path(params[:id]), method: :post do |f|
+  - if @poll.errors.any?
+    .row
+      .col-sm-6#form_errors
+        %h3
+          = pluralize(@poll.errors.count, "error")
+          prohibited this poll from being saved:
+        %ul
+          - @poll.errors.full_messages.each do |msg|
+            %li= msg
+
+  = f.hidden_field :user_id, value: current_user.id
+
+  .row
+    .col-sm-12
+      .form-group
+        = f.label :question
+        = f.text_field :question, class: "form-control", placeholder: "Question", autofocus: true
+
+  .row
+    .col-sm-3
+      .form-group
+        = f.label :vote_min
+        = f.text_field :vote_min, class: "form-control"
+
+  .row
+    .col-sm-3
+      .form-group
+        = f.label :vote_max
+        = f.text_field :vote_max, class: "form-control"
+
+  .row
+    .col-sm-3
+      .form-group
+        = f.label :start
+        = f.datetime_local_field :start_date, class: "form-control"
+
+  .row
+    .col-sm-3
+      .form-group
+        = f.label :finish
+        = f.datetime_local_field :finish_date, class: "form-control"
+
+  .row
+    .col-sm-4
+      .form-group
+        %button.btn.btn-primary{type: "submit"} Create

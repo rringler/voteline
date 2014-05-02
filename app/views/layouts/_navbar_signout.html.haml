@@ -1,0 +1,8 @@
+%li
+  = link_to "#{current_user.email}", users_path(current_user)
+%li
+  %a{href: "#about"} About
+%li
+  %a{href: "#contact"} Contact
+%li
+  = link_to "Sign out", destroy_user_session_path, method: :delete

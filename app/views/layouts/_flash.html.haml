@@ -1,0 +1,7 @@
+- flash.each do |type, text|
+  .row
+    .col-sm-12
+      %div{class: "flash alert alert-#{type} alert.dismissable"}
+        %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
+          &times;
+        %p text

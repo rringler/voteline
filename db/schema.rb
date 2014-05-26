@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425025123) do
+ActiveRecord::Schema.define(version: 20140525031404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140425025123) do
     t.integer  "user_id",                    null: false
     t.string   "question",                   null: false
     t.datetime "start"
-    t.datetime "end"
+    t.datetime "finish"
     t.integer  "vote_min",                   null: false
     t.integer  "vote_max",                   null: false
     t.boolean  "public",     default: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140425025123) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "time_zone"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

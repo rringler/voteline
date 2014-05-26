@@ -1,9 +1,27 @@
-.row
-  .col-sm-12
-    = @poll.question
-.row
-  .col-sm-6
-    = @poll.start
-.row
-  .col-sm-6
-    = @poll.end
+%section
+  .row
+    .page-header.col-sm-12
+      %h1= @poll.question
+    %hr
+  .row
+    .col-sm-4.col-sm-offset-2
+      .panel.panel-success
+        .panel-heading
+          %h3.panel-title= "Poll start"
+        .panel-body.text-center
+          %strong= "#{@poll.pretty_start}"
+
+    .col-sm-4
+      .panel.panel-success
+        .panel-heading
+          %h3.panel-title= "Poll finish"
+        .panel-body.text-center
+          %strong= "#{@poll.pretty_finish}"
+
+%section#chart
+  = render 'chart', poll: @poll
+
+%section
+  .row
+    .col-sm-6.col-centered
+      = render 'votes/form', vote: Vote.new(poll_id: params[:id])

@@ -1,7 +1,9 @@
 = form_for @poll, url: polls_path(params[:id]), method: :post do |f|
   - if @poll.errors.any?
     .row
-      .col-sm-6#form_errors
+      .col-sm-8.alert.alert-dismissable.alert-danger#form_errors
+        %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
+          &times;
         %h3
           = pluralize(@poll.errors.count, "error")
           prohibited this poll from being saved:
@@ -30,16 +32,16 @@
         = f.text_field :vote_max, class: "form-control"
 
   .row
-    .col-sm-3
+    .col-sm-5
       .form-group
         = f.label :start
-        = f.datetime_local_field :start_date, class: "form-control"
+        = f.datetime_local_field :start, class: "form-control"
 
   .row
-    .col-sm-3
+    .col-sm-5
       .form-group
         = f.label :finish
-        = f.datetime_local_field :finish_date, class: "form-control"
+        = f.datetime_local_field :finish, class: "form-control"
 
   .row
     .col-sm-4

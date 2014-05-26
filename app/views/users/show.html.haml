@@ -1,13 +1,20 @@
-%section#user-profile
-  .row
-    .col-sm-4
-      %h2 User#show
+%section
   .row
     .col-sm-12
-      %h3 Your polls:
+      %h2 Your polls:
       %ul
         - @user.polls.each do |poll|
-          %li= poll.question
+          %li
+            %h4
+              = link_to poll.question, poll_path(poll)
+              %small= "| Created at: #{poll.created_at}"
+
+%section
   .row
     .col-sm-4
       %p= link_to "Create a new poll", new_poll_path, class: "btn btn-primary"
+
+%section
+  .row
+    .col-sm-4
+      %p= link_to "Edit your profile", edit_user_registration_path, class: "btn"

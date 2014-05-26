@@ -5,7 +5,7 @@
 %li
   = link_to "Sign up", new_user_registration_path
 %li.dropdown
-  = link_to new_user_session_path, class: "dropdown-toggle", "data-toggle": "dropdown" do
+  = link_to new_user_session_path, class: "dropdown-toggle", "data-toggle" => "dropdown" do
     = "Sign in <strong class=\"caret\"></strong>".html_safe
   .dropdown-menu
-    = render "/devise/sessions/new"
+    = render template: "/devise/sessions/new_compact"

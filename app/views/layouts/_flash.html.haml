@@ -1,7 +1,17 @@
 - flash.each do |type, text|
   .row
     .col-sm-12
-      %div{class: "flash alert alert-#{type} alert.dismissable"}
+      - class_string = "alert alert.dismissable "
+      - case type
+      - when 'success', 'notice'
+        - class_string += "alert-success"
+      - when 'info'
+        - class_string += "alert-info"
+      - when 'warning', 'alert'
+        - class_string += "alert-warning"
+      - when'danger'
+        - class_string += "alert-danger"
+      %div{class: "#{class_string}"}
         %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
           &times;
-        %p text
+        %p= text

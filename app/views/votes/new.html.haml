@@ -1,22 +1,5 @@
-= form_for @vote, url: poll_votes_path(params[:poll_id]), method: :post do |f|
-  - if @vote.errors.any?
-    .row
-      .col-sm-6#form_errors
-        %h3
-          = pluralize(@vote.errors.count, "error")
-          prohibited this post from being saved:
-        %ul
-          - @vote.errors.full_messages.each do |msg|
-            %li= msg
-  = f.hidden_field :user_id, value: current_user.id
-  = f.hidden_field :poll_id, value: params[:poll_id]
+.row
+  .col-sm-6
+    %h3 Create a new poll
 
-  .row
-    .col-sm-12
-      .form-group
-        = f.label :value
-        = f.range_field :value, nil, in: @vote.poll.range, class: "form-control", autofocus: true
-  .row
-    .col-sm-4
-      .form-group
-        %button.btn.btn-primary{type: "submit"} Vote
+= render 'form', locals: { vote: @vote }

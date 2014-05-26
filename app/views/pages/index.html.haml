@@ -1,6 +1,15 @@
-%section#public-polls
+%section
   .row
-    %h2 Pages#index
+    .page-header.col-sm-12
+      %h1 Voteline
+    %hr
   .row
     .col-sm-12
-      %h3 Public Polls:
+      %h2 Recent Polls:
+      %ul
+        - @polls.each do |poll|
+          %li
+            %h4
+              = link_to poll.question, poll_path(poll)
+              %small
+                = "(started at: #{poll.pretty_start})"

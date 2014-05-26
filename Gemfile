@@ -8,9 +8,11 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
-gem 'turbolinks'
+gem 'bootstrap-sass', '~> 3.1.1'
+#gem 'turbolinks'
 gem 'devise'
+gem 'draper'
+gem 'lazy_high_charts'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -24,6 +26,8 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec-rails'
   gem 'terminal-notifier-guard'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

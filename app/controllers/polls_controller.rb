@@ -1,7 +1,7 @@
 class PollsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
   before_filter :current_user?, only: [:edit, :update, :destroy]
-  before_filter :create_datetime_params, only: [:create, :update]
+  before_filter :format_poll_datetime_params, only: [:create, :update]
 
   def new
     @poll = Poll.new
@@ -19,7 +19,7 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find(params[:id]).decorate
   end
 
   def index
@@ -48,7 +48,7 @@ class PollsController < ApplicationController
     params.require(:poll).permit(:user_id,
                                  :question,
                                  :start,
-                                 :end,
+                                 :finish,
                                  :vote_min,
                                  :vote_max)
   end
@@ -57,17 +57,9 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id]).user == current_user
   end
 
-  def create_datetime_params
-    params[:start] = datetime_from_string(params[:start])
-    params[:end]   = datetime_from_string(params[:end])
-  end
-
-  def datetime_from_string(string)
-    date_params = string.sub('T','-')
-                        .sub('%3A','-')
-                        .split('-')
-                        .map { |x| x.to_i }
-
-    DateTime.new(*date_params)
+  def format_poll_datetime_params
+    [:start, :finish].each do |date|
+      params[:poll][date] = params[:poll][date].sub('T',' ').concat(':00')
+    end
   end
 end

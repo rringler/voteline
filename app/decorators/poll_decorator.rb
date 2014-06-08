@@ -4,24 +4,22 @@ class PollDecorator < Draper::Decorator
   def vote_histogram
     LazyHighCharts::HighChart.new('spline') do |f|
       f.chart(height: 400, width: 600)
-      f.plot_options(pointStart: js_date(Time.zone.at(object.start))) if object.votes.any?
+      f.plot_options(pointStart: js_date(object.start))
       f.xAxis(type: 'datetime',
-              #min: Time.zone.at(js_date(object.start)),
-              #max: Time.zone.at(js_date(object.finish)),
-              labels: { format: "{value:%l:%M %p}",
+              min: js_date(object.start),
+              max: js_date(object.finish),
+              labels: { format: "#{date_format_string}",
                         align: 'right',
                         rotation: -30 })
       f.yAxis(title: { text: 'Value' },
               min: object.vote_min,
               max: object.vote_max)
-      f.series(name: 'Votes',
+      f.series(name: 'Avg. Vote',
                type: 'line',
                tooltip: { useHTML: true,
-                          xDateFormat: '%a, %e-%b' },
-               data: high_charts_scatter_data)
+                          xDateFormat: '%a, %e-%b' })
       f.legend(enabled: false)
-
-      #Rails.logger.info("INFO: HC Data: #{high_charts_scatter_data}")
+      f.options[:chart][:events] = { load: load_data_via_ajax.js_code }
     end
   end
 
@@ -39,14 +37,41 @@ class PollDecorator < Draper::Decorator
 
   private
 
-  def high_charts_scatter_data
-    @data ||= Array(object.votes).map { |x| [js_date(Time.zone.at(x.created_at)), x.value.to_i] }
+  def load_data_via_ajax
+    if object.live?
+      <<-END
+        function requestData(){
+          $.ajax({url:'#{object.id}/binned_votes.json', success: function(data){
+            console.log(data);
+            window.chart_vote_histogram_chart.series[0].setData(data);
+            setTimeout(requestData,5000)
+          }, cache: false});
+        }
+      END
+    else
+      <<-END
+        function requestData(){
+          $.ajax({url:'#{object.id}/binned_votes.json', success: function(data){
+            console.log(data);
+            window.chart_vote_histogram_chart.series[0].setData(data);
+          }, cache: false});
+        }
+      END
+    end
+  end
+
+  def date_format_string
+    if object.start.day == object.finish.day
+      "{value:%l:%M %p}"
+    else
+      "{value:%b-%e<br/>%l:%M %p}"
+    end
   end
 
   def js_date(date)
-    # JS stores dates as the number of milliseconds after epoch,
+    # JS stores dates as the number of milliseconds after UTC epoch,
     # while Ruby stores dates as the number of full seconds
-    (date.to_f * 1000).to_i
+    ((date + date.utc_offset).to_f * 1000).to_i
   end
 
   def pretty_date(date)

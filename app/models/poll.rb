@@ -6,8 +6,19 @@ class Poll < ActiveRecord::Base
 
   validates :start,  presence: true
   validates :finish, presence: true
+  validates :vote_min, presence: true
+  validates :vote_max, presence: true
+  validate  :valid_vote_range
 
-  def range
+  def vote_range
     (vote_min..vote_max)
+  end
+
+  def valid_vote_range
+    vote_min < vote_max
+  end
+
+  def live?
+    Time.now >= start && Time.now <= finish
   end
 end

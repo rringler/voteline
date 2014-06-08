@@ -1,3 +1,4 @@
 var chart = "<%= j render partial: 'polls/chart',
                           locals: { poll: Poll.find(params[:id]).decorate } %>";
 $("section#chart").html(chart);
+$("span#voted").html("true");

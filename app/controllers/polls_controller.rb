@@ -11,8 +11,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
 
     if @poll.save
-      redirect_to poll_path(@poll),
-                  flash: { success: "Poll created!" }
+      redirect_to poll_path(@poll), flash: { success: "Poll created!" }
     else
       render 'new'
     end

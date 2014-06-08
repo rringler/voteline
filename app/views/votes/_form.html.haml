@@ -21,7 +21,7 @@
       %h3
         = "Cast your vote: "
         %span#range-value
-      = f.range_field :value, in: vote.poll.range, id: "range-field", autofocus: true
+      = f.range_field :value, in: vote.poll.vote_range, id: "range-field", autofocus: true
 
   .row
     .form-group

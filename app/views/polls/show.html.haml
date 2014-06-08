@@ -19,9 +19,14 @@
           %strong= "#{@poll.pretty_finish}"
 
 %section#chart
-  = render 'chart', poll: @poll
+  .row
+    .col-sm-10.col-centered
+      = render 'chart', poll: @poll
 
 %section
   .row
     .col-sm-6.col-centered
       = render 'votes/form', vote: Vote.new(poll_id: params[:id])
+
+%div.hidden
+  %span{id: "voted"} false

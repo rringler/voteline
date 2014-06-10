@@ -41,7 +41,7 @@ class PollDecorator < Draper::Decorator
     if object.live?
       <<-END
         function requestData(){
-          $.ajax({url:'#{object.id}/binned_votes.json', success: function(data){
+          $.ajax({url:'#{object.id}.json', success: function(data){
             console.log(data);
             window.chart_vote_histogram_chart.series[0].setData(data);
             setTimeout(requestData,5000)
@@ -51,7 +51,7 @@ class PollDecorator < Draper::Decorator
     else
       <<-END
         function requestData(){
-          $.ajax({url:'#{object.id}/binned_votes.json', success: function(data){
+          $.ajax({url:'#{object.id}.json', success: function(data){
             console.log(data);
             window.chart_vote_histogram_chart.series[0].setData(data);
           }, cache: false});

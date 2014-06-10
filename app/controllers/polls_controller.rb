@@ -19,6 +19,12 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id]).decorate
+    @binned_votes = VoteAggregator.new(@poll.votes).high_charts_scatter_data
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @binned_votes }
+    end
   end
 
   def index

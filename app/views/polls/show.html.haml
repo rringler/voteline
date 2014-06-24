@@ -5,14 +5,14 @@
     %hr
   .row
     .col-sm-4.col-sm-offset-2
-      .panel.panel-success
+      %div{class: "panel #{@poll.start_date_panel_class}"}
         .panel-heading
           %h3.panel-title= "Poll start"
         .panel-body.text-center
           %strong= "#{@poll.pretty_start}"
 
     .col-sm-4
-      .panel.panel-success
+      %div{class: "panel #{@poll.finish_date_panel_class}"}
         .panel-heading
           %h3.panel-title= "Poll finish"
         .panel-body.text-center

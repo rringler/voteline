@@ -18,7 +18,7 @@ class Poll < ActiveRecord::Base
     vote_min < vote_max
   end
 
-  def live?
+  def active?
     Time.now >= start && Time.now <= finish
   end
 end

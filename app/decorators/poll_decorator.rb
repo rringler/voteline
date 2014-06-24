@@ -35,10 +35,18 @@ class PollDecorator < Draper::Decorator
     pretty_date(created_at)
   end
 
+  def start_date_panel_class
+    object.active? ? "panel-success" : "panel-default"
+  end
+
+  def finish_date_panel_class
+    object.active? ? "panel-success" : "panel-default"
+  end
+
   private
 
   def load_data_via_ajax
-    if object.live?
+    if object.active?
       <<-END
         function requestData(){
           $.ajax({url:'#{object.id}.json', success: function(data){

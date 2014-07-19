@@ -25,15 +25,18 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'terminal-notifier-guard'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'betterlorem'
 end
 
 group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'rb-fsevent'
+  gem 'factory_girl_rails'
   gem 'simplecov'
 end
 

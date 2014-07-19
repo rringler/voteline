@@ -19,5 +19,5 @@ class User < ActiveRecord::Base
     zone.to_s.gsub(/\(.*\)\s/, "")
   end
 
-  validates_inclusion_of :time_zone, in: US_TIME_ZONES
+  validates_inclusion_of :time_zone, in: US_TIME_ZONES.push(nil)
 end

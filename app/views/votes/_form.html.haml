@@ -3,26 +3,27 @@
                    method: :post,
                    remote: true } do |f|
   - if vote.errors.any?
-    .row
-      .alert.alert-dismissable.alert-danger#form_errors
-        %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
-          &times;
-        %h3
-          = pluralize(vote.errors.count, "error")
-          prohibited this vote from being saved:
-        %ul
-          - vote.errors.full_messages.each do |msg|
-            %li= msg
+    .alert.alert-dismissable.alert-danger#form_errors
+      %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
+        &times;
+      %h3
+        = pluralize(vote.errors.count, "error")
+        prohibited this vote from being saved:
+      %ul
+        - vote.errors.full_messages.each do |msg|
+          %li= msg
 
   = f.hidden_field :poll_id, value: params[:id]
 
-  .row
-    .form-group
-      %h3
-        = "Cast your vote: "
-        %span#range-value
-      = f.range_field :value, in: vote.poll.vote_range, id: "range-field", autofocus: true
 
-  .row
-    .form-group
-      %button.btn.btn-primary{type: "submit"} Vote
+  .form-group
+    %h3
+      = "Cast your vote: "
+      %span#range-value
+    = f.range_field :value, in: vote.poll.vote_range, id: "range-field", autofocus: true
+
+
+  .form-group
+    %button.btn.btn-primary{type: "submit"}
+      %i.fa.fa-check
+      Vote

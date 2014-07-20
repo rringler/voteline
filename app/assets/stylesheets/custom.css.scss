@@ -1,0 +1,51 @@
+@import "bootstrap";
+@import "font-awesome";
+
+body {
+  padding-top: 70px;
+  background: url(image_path('fabric_of_squares_gray.png')) repeat 0 0;
+}
+
+.navbar-brand {
+  font-family: 'Lobster', Georgia, Times, serif;
+  font-size: 170%;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Vollkorn', Georgia, Times, serif;
+}
+
+h1, h2 {
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+p, div {
+  font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+
+.btn i {
+  padding-right: 4px;
+}
+
+.highcharts-container svg {
+  @extend .centered;
+}
+
+nav form {
+  padding-left: 6px;
+  padding-right: 6px;
+
+  input.login {
+    margin-bottom: 6px;
+  }
+}
+
+.col-centered {
+  @extend .centered;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}

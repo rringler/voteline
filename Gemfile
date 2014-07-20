@@ -13,6 +13,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'draper'
 gem 'lazy_high_charts'
+gem 'font-awesome-rails'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -4,7 +4,7 @@
       %h1= @poll.question
     %hr
   .row
-    .col-sm-4.col-sm-offset-2
+    .col-sm-4
       %div{class: "panel #{@poll.start_date_panel_class}"}
         .panel-heading
           %h3.panel-title= "Poll start"
@@ -20,12 +20,12 @@
 
 %section#chart
   .row
-    .col-sm-10.col-centered
+    .col-sm-10
       = render 'chart', poll: @poll
 
 %section
   .row
-    .col-sm-6.col-centered
+    .col-sm-6
       = render 'votes/form', vote: Vote.new(poll_id: params[:id])
 
 %div.hidden

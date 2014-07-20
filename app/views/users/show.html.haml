@@ -12,7 +12,10 @@
 %section
   .row
     .col-sm-4
-      %p= link_to "Create a new poll", new_poll_path, class: "btn btn-primary"
+      %p
+        = link_to new_poll_path, class: "btn btn-primary" do
+          %i.fa.fa-bar-chart-o
+          Create a new poll
 
 %section
   .row

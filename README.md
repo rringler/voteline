@@ -12,15 +12,17 @@ Voteline was developed on Ruby v2.1 and Rails v4.1.  Several gems were utilized 
 gem 'devise'
 gem 'draper'
 gem 'lazy_high_charts'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 ```
 
 Installation
 ============
 
 1. Clone the repository.
-2. Create a `/config/secrets.yml` file with with your private keys for development, test, and production environments and add it to your `.gitignore` file.
+2. Create a `/config/secrets.yml` file with with your private keys for development and test.  Make sure your private keys for your production environment are stored in environment variables.
 
-   ```ruby
+   ```Ruby
    development:
      secret_key_base: 3acf07
      devise_secret_key: 3ef655
@@ -33,12 +35,11 @@ Installation
      secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
      devise_secret_key: <%= ENV["DEVISE_SECRET_KEY"] %>
    ```
-3. If deploying to Heroku, add these environmental variables to your production environment: `$ heroku config:set RAILS_SECRET_KEY_BASE=1234abcd`
-4. If deploying to Heroku, pick an email provider. Sendgrid is easy: `$ heroku addons:add sendgrid:starter`
-5. Copy the new sendgrid configuration variables to your `/config/secrets.yml` file.
-6. Add the following to your config/environment.rb file:
+3. If deploying to Heroku, add your production keys to your environment variables: `$ heroku config:set SECRET_KEY_BASE=1234abcd`
+4. If deploying to Heroku, pick an email provider.  Sendgrid is easy: `$ heroku addons:add sendgrid:starter`
+5. Copy the following mailer settings to your `config/environment.rb` file:
 
-   ```ruby
+   ```Ruby
    ActionMailer::Base.smtp_settings = {
      :address        => 'smtp.sendgrid.net',
      :port           => '587',
@@ -49,13 +50,19 @@ Installation
      :enable_starttls_auto => true
    }
    ```
-7. As of v3.1.0, Devise requires the secret key be available during asset precompilation. Heroku's Cedar stack doesn't support this by default, but you can enable it using the `$ heroku labs:enable user-env-compile -a <appname>` command.
+6. Add the sendgrid username/password details in environment variables:
+
+   ```Shell
+   $ heroku config:set SENDGRID_USERNAME=<sendgrid_username>
+   $ heroku config:set SENDGRID_PASSWORD=<sendgrid_password>
+   ```
+7. Deploy.  `$ git push heroku master`.
 
 TODO
 ====
 
 * Poll admins
-* Realtime updating (websockets perhaps?)
+* ~~Realtime updating (websockets perhaps?)~~
 
 Credits
 =======

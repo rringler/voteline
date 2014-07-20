@@ -19,4 +19,6 @@
 /coverage
 
 # Ignore the application's secret keys
-/config/secrets.yml
+# No longer ignoring secrets.yml since production secrets have been moved
+# to environment variables
+#/config/secrets.yml

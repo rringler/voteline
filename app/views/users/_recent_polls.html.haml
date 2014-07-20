@@ -1,0 +1,9 @@
+.row
+  .col-sm-12
+    %h2 Your Recent Polls:
+    %ul
+      - polls.each do |poll|
+        %li
+          %h4
+            = link_to poll.question, poll_path(poll)
+            %small= "| Created at: #{poll.created_at}"

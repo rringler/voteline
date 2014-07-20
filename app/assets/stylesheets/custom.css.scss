@@ -6,12 +6,6 @@ body {
   background: url(image_path('fabric_of_squares_gray.png')) repeat 0 0;
 }
 
-.navbar-brand {
-  font-family: 'Lobster', Georgia, Times, serif;
-  font-size: 170%;
-  letter-spacing: 1px;
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Vollkorn', Georgia, Times, serif;
 }
@@ -30,15 +24,6 @@ p, div {
 
 .highcharts-container svg {
   @extend .centered;
-}
-
-nav form {
-  padding-left: 6px;
-  padding-right: 6px;
-
-  input.login {
-    margin-bottom: 6px;
-  }
 }
 
 .col-centered {

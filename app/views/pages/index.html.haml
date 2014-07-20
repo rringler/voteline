@@ -1,8 +1,13 @@
 %section
   .row
-    .page-header.col-sm-12
-      %h1 Voteline
-    %hr
+    .jumbotron.text-center
+      %h1.brand Voteline
+      %p Real-time voting.  Real-easy.
+      - if !current_user
+        = link_to new_user_registration_path, class: "btn btn-lg btn-success" do
+          %i.fa.fa-bar-chart-o
+          Sign up
+  %hr
   .row
     .col-sm-12
       %h2 Recent Polls:
@@ -13,3 +18,20 @@
               = link_to poll.question, poll_path(poll)
               %small
                 = "(started at: #{poll.pretty_start})"
+  - if current_user
+    %hr
+    .row
+      .col-sm-12
+        %h2 Your Recent Polls:
+        %ul
+          - current_user.polls.recent.each do |poll|
+            %li
+              %h4
+                = link_to poll.question, poll_path(poll)
+                %small= "| Created at: #{poll.created_at}"
+    %hr
+    .row
+      .col-sm-12
+        = link_to new_poll_path, class: "btn btn-primary" do
+          %i.fa.fa-bar-chart-o
+          Create a new poll

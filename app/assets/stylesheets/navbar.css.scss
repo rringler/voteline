@@ -1,0 +1,24 @@
+.brand {
+  font-family: 'Lobster', Georgia, Times, serif;
+  font-size: 170%;
+  letter-spacing: 1px;
+}
+
+nav form {
+  padding-left: 6px;
+  padding-right: 6px;
+
+  input.login {
+    margin-bottom: 6px;
+  }
+}
+
+/* Right-align the navbar dropdown box */
+.pull-right .dropdown-menu:after {
+    left: auto;
+    right: 13px;
+}
+.pull-right .dropdown-menu {
+    left: auto;
+    right: 0;
+}

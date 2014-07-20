@@ -1,23 +1,12 @@
 %section
+  = render 'recent_polls', polls: @user.polls.recent(5).decorate
+%hr
+%section
   .row
     .col-sm-12
-      %h2 Your polls:
-      %ul
-        - @user.polls.each do |poll|
-          %li
-            %h4
-              = link_to poll.question, poll_path(poll)
-              %small= "| Created at: #{poll.created_at}"
-
-%section
-  .row
-    .col-sm-4
-      %p
-        = link_to new_poll_path, class: "btn btn-primary" do
-          %i.fa.fa-bar-chart-o
-          Create a new poll
-
-%section
-  .row
-    .col-sm-4
-      %p= link_to "Edit your profile", edit_user_registration_path, class: "btn"
+      = link_to new_poll_path, class: "btn btn-primary" do
+        %i.fa.fa-bar-chart-o
+        Create a new poll
+      = link_to edit_user_registration_path, class: "btn btn-default" do
+        %i.fa.fa-pencil-square-o
+        Edit your profile

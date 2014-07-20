@@ -1,0 +1,66 @@
+.row
+  .col-sm-12
+    %h2
+      Edit
+      = resource_name.to_s.humanize
+
+= form_for resource, as: resource_name, |
+                     url: registration_path(resource_name), |
+                     html: { class: "form-horizontal", |
+                             method: :put, |
+                             role: "form" } do |f|
+  .row
+    .col-sm-12
+      = devise_error_messages!
+
+  .row
+    .form-group
+      = f.label :email, class: "col-sm-3 control-label"
+      = f.email_field :email, class: "col-sm-4", autofocus: true
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    .row
+      Currently waiting confirmation for:
+      = resource.unconfirmed_email
+
+  .row
+    .form-group
+      = f.label :current_password, "Current Password", |
+                                   class: "col-sm-3 control-label"
+      = f.password_field :current_password, class: "col-sm-4", |
+                                            autocomplete: "off"
+
+  .row
+    .form-group
+      = f.label :password, "New Password", |
+                           class: "col-sm-3 control-label"
+      - password_placeholder = "Leave blank to keep your current password"
+      = f.password_field :password, class:"col-sm-4", |
+                                    placeholder: password_placeholder, |
+                                    autocomplete: "off"
+
+  .row
+    .form-group
+      = f.label :password_confirmation, "New Password (again)", |
+                                        class: "col-sm-3 control-label"
+      = f.password_field :password_confirmation, class: "col-sm-4", |
+                                                 placeholder: password_placeholder, |
+                                                 autocomplete: "off"
+
+  .row
+    .form-group
+      = f.label :time_zone, "Time Zone", |
+                            class: "col-sm-3 control-label"
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, |
+                                       class: "col-sm-4"
+
+  .row
+    .form-group
+      = f.button class: "btn btn-primary col-sm-offset-3" do
+        %i.fa.fa-pencil-square-o
+        Update my account
+      = button_tag registration_path(resource_name), data: { confirm: "Are you sure?" },
+                                                     method: :delete,
+                                                     class: "btn btn-danger" do
+        %i.fa.fa-exclamation-triangle
+        Cancel my account

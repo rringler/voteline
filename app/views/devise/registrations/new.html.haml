@@ -1,0 +1,38 @@
+.row
+  .col-sm-6
+    %h2 Sign up
+
+= form_for resource, as: resource_name, |
+                     url: registration_path(resource_name), |
+                     html: { class: "form-horizontal", |
+                             role: "form" } do |f|
+  .row
+    .col-sm-6
+      = devise_error_messages!
+
+  .row
+    .form-group
+      = f.label :email, class: "col-sm-3 control-label"
+      = f.email_field :email, placeholder: "email", |
+                              class: "col-sm-4", |
+                              autofocus: true
+
+  .row
+    .form-group
+      = f.label :password, class: "col-sm-3 control-label"
+      = f.password_field :password, placeholder: "password", |
+                                    class: "col-sm-4", |
+                                    autocomplete: "off"
+
+  .row
+    .form-group
+      = f.label :password_confirmation, class: "col-sm-3 control-label"
+      = f.password_field :password_confirmation, placeholder: "password (again)", |
+                                                 class: "col-sm-4", |
+                                                 autocomplete: "off"
+
+  .row
+    .form-group
+      = f.button class: "btn btn-primary col-sm-offset-3" do
+        %i.fa.fa-pencil-square-o
+        Sign up
